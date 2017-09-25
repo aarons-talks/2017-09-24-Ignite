@@ -12,6 +12,12 @@ kubectl create ns prom-operator
 kubectl create -n prom-operator -f manifests.yaml
 ```
 
+And verify that it's running:
+
+```console
+kubectl get pods -n prom-operator
+```
+
 ## Install Example Application
 
 Next, install an application for prometheus to monitor:
@@ -48,7 +54,7 @@ kubectl create -n prom-operator -f svc.yaml
 
 ## View the Monitoring UI
 
-The monitoring UI is available on port `30900` of the node.
+The monitoring UI is available on port `30900` of the service's load balancer.
 
 ## Clean Up
 
