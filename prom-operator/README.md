@@ -54,7 +54,7 @@ kubectl create -n prom-operator -f svc.yaml
 
 ## View the Monitoring UI
 
-The monitoring UI is available on port `30900` of the service's load balancer.
+The monitoring UI is available on port `9090` of the service's load balancer.
 
 ## Clean Up
 
