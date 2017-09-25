@@ -18,9 +18,8 @@ Install the operator software. This is management software that will respond
 to requests to create, manage and destroy etcd clusters
 
 ```console
-helm install stable/etcd-operator --namespace etcd-operator --name etcd-operator
+helm install stable/etcd-operator --namespace etcd-operator --name etcd-operator --set rbac.install=true
 ```
-
 
 ## Create an Etcd Cluster
 
