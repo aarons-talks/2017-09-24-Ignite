@@ -56,7 +56,7 @@ The resources we've created are organized in a hierarchy:
 We'll delete the `simple-nginx` namespace, and the controller will do all the
 deletion in reverse order for us.
 
-FIrst, issue the delete:
+First, issue the delete:
 
 ```console
 kubectl delete namespace simple-nginx
