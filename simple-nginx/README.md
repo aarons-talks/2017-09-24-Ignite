@@ -54,9 +54,14 @@ namespace controller delete the deployment and all of its child resources
 kubectl delete namespace simple-nginx
 ```
 
-Finally, watch the pods shut down:
+Then, watch the pods shut down:
 
 ```console
 kubectl get pods -n simple-nginx -w
 ```
 
+Finally, observe that the namespace is gone:
+
+```console
+kubectl get namespaces
+```
