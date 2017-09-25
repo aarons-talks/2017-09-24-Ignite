@@ -2,7 +2,10 @@
 
 Code and resources for Ignite 2017 Demos
 
-# Etcd Operator
+# Operators
 
-See [etcd-operator/README.md](./etcd-operator/README.md)
+This repository has walk-throughs for the following operator:
+
+- [Etcd Operator](./etcd-operator/README.md)
+- [Prometheus Operator](./prom-operator/README.md)
 
