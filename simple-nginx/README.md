@@ -46,9 +46,17 @@ kubectl get pods -n simple-nginx -w
 
 ## Clean up
 
-Finally, let's delete the `simple-nginx` namespace and let the Kubernetes
-namespace controller delete the deployment and all of its child resources
-(pods, etc...):
+The resources we've created are organized in a hierarchy:
+
+- The `simple-nginx` namespace contains the `nginx` deployment
+    - It can contain N others as well
+- The `nginx` deployment has one or more _replica sets_
+- The replica sets contain one or more _pods_
+
+We'll delete the `simple-nginx` namespace, and the controller will do all the
+deletion in reverse order for us.
+
+FIrst, issue the delete:
 
 ```console
 kubectl delete namespace simple-nginx
