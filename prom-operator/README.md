@@ -49,3 +49,11 @@ kubectl create -n prom-operator -f svc.yaml
 ## View the Monitoring UI
 
 The monitoring UI is available on port `30900` of the node.
+
+## Clean Up
+
+When we're done with everything, we can simply delete the namespace:
+
+```console
+kubectl delete ns prom-operator
+```
