@@ -15,9 +15,14 @@ acs-engine deploy \
     --api-model acs-engine/kubernetes-config.json
 ```
 
+# Simple Walkthroughs
+
+There is one simple walk-through to demonstrate Kubernetes controllers and 
+reconciliation [here](./simple-nginx).
+
 # Operators
 
-This repository has walk-throughs for the following operator:
+This repository has walk-throughs for the following operators:
 
 - [Etcd Operator](./etcd-operator/README.md)
 - [Prometheus Operator](./prom-operator/README.md)
