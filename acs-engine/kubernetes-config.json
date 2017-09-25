@@ -7,7 +7,7 @@
                 "gcHighThreshold": 70,
                 "gcLowThreshold": 60,
                 "enableAggregatedAPIs": true,
-                "enableRBAC": true
+                "enableRbac": true
             }
         },
         "masterProfile": {
