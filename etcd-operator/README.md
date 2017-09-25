@@ -21,19 +21,25 @@ to requests to create, manage and destroy etcd clusters
 helm install stable/etcd-operator --namespace etcd-operator --name etcd-operator --set rbac.install=true
 ```
 
+Next, view the operator running, but not the etcd cluster itself:
+
+```console
+kubectl get pods -n etcd-operator
+```
+
 ## Create an Etcd Cluster
 
 Next, tell the operator to install an actual Etcd cluster:
 
 ```console
-helm upgrade --set cluster.enabled=true etcd-operator stable/etcd-operator
+helm upgrade --set cluster.enabled=true --set rbac.install=true etcd-operator stable/etcd-operator
 ```
 
-A three-node etcd cluster should be launched in the `etcd-operator` namespace.
+A three-node etcd cluster should start launching in the `etcd-operator` namespace.
 Let's see it:
 
 ```console
-kubectl get po -n etcd-operator
+kubectl get pods -n etcd-operator -w
 ```
 
 Notice the following pods in the list:
@@ -54,8 +60,8 @@ kubectl get po -n etcd-operator
 Next, delete the etcd cluster:
 
 ```console
-helm upgrade --set cluster.enabled=false etcd-operator stable/etcd-operator
-kubectl get po -n etcd-operator
+helm upgrade --set cluster.enabled=false --set rbac.install=true etcd-operator stable/etcd-operator
+kubectl get pods -n etcd-operator -w
 ```
 
 Finally, delete the operator software:
