@@ -53,7 +53,7 @@ Notice the following pods in the list:
 Next, add more replicas to the etcd cluster:
 
 ```console
-helm upgrade --set cluster.size=5 --set cluster.enabled=true etcd-operator stable/etcd-operator
+helm upgrade --set cluster.enabled=true --set cluster.size=5  --set rbac.install=true etcd-operator stable/etcd-operator
 kubectl get po -n etcd-operator
 ```
 
