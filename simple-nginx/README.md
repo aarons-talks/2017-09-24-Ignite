@@ -47,7 +47,8 @@ kubectl delete pod $POD_NAME -n simple-nginx
 ## Scale
 
 This installation created a deployment that then told Kubernetes to install
-two nginx pods. Let's scale up the number of pods:
+5 nginx pods. Let's scale up the number of pods by passing Kubernetes a new
+manifest that specifies 10 replicas:
 
 ```console
 kubectl apply -n simple-nginx -f deployment-scaled.yaml
