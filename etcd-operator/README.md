@@ -12,6 +12,14 @@ This document will show how to install the
 in Kubernetes. The operator is software that runs in a cluster to install, manage
 and delete an etcd cluster.
 
+__Important note: please run the following command in a background terminal
+window, so that you can see all of the commands that you run in here get 
+reconciled:__
+
+```console
+kubectl get pods -n etcd-operator -w
+```
+
 ## Install the Operator
 
 Install the operator software. This is management software that will respond
@@ -19,12 +27,6 @@ to requests to create, manage and destroy etcd clusters
 
 ```console
 helm install stable/etcd-operator --namespace etcd-operator --name etcd-operator --set rbac.install=true
-```
-
-Next, view the operator running, but not the etcd cluster itself:
-
-```console
-kubectl get pods -n etcd-operator
 ```
 
 ## Create an Etcd Cluster
@@ -36,14 +38,7 @@ Next, tell the operator to install an actual Etcd cluster with 3 nodes
 helm upgrade --set cluster.enabled=true --set rbac.install=true etcd-operator stable/etcd-operator
 ```
 
-A three-node etcd cluster should start launching in the `etcd-operator` namespace.
-Let's see it:
-
-```console
-kubectl get pods -n etcd-operator -w
-```
-
-Notice the following pods in the list:
+The following pods should be created in the `etcd-operator` namespace:
 
 - `etcd-cluster-0000`
 - `etcd-cluster-0001`
@@ -57,20 +52,17 @@ Next, add more replicas to the etcd cluster:
 helm upgrade --set cluster.enabled=true --set cluster.size=5 --set rbac.install=true etcd-operator stable/etcd-operator
 ```
 
-And observe two new etcd nodes (Kubernetes pods) launching:
-
-```console
-kubectl get pods -n etcd-operator
-```
+Two new nodes (Kubernetes pods) should be launched as part of the existing
+etcd cluster.
 
 Next, delete the etcd cluster:
 
 ```console
 helm upgrade --set cluster.enabled=false --set rbac.install=true etcd-operator stable/etcd-operator
-kubectl get pods -n etcd-operator -w
 ```
 
-Finally, delete the operator software:
+This should remove the pods that are part of the etcd cluster, but _not_ the
+operator pod itself. Finally, delete the operator software:
 
 ```console
 helm delete --purge etcd-operator
