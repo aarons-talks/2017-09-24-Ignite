@@ -4,6 +4,14 @@ This document has instructions for installing Nginx and showing how the
 built-in Kubernetes control loops work to provide declarative installation,
 management and deletion semantics.
 
+__Important note: please run the following command in a background terminal
+window, so that you can see all of the commands that you run in here get 
+reconciled:__
+
+```console
+kubectl get pods -n simple-nginx -w
+```
+
 ## Install
 
 A Kubernetes [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/) is
@@ -14,22 +22,20 @@ We'll install a
 to manage nginx pods. The deployment is the way that we tell Kubernetes 
 controllers to manage these pods.
 
-First, create a namespace, install the deployment, and watch the pods launch:
+First, create a namespace & install the deployment:
 
 ```console
 kubectl create ns simple-nginx
 kubectl create -f deployment.yaml -n simple-nginx
-kubectl get pods -n simple-nginx -w
 ```
 
 ## Delete
 
-Next, delete a pod and watch the deleted pod get relaunched by the controller
-(reconciliation):
+Next, delete a pod. Another pod (with a different name) should get re-created
+in its place (reconciliation):
 
 ```console
 kubectl delete pod $POD_NAME -n simple-nginx
-kubectl get pods -n simple-nginx -w
 ```
 
 ## Scale
@@ -42,11 +48,8 @@ manifest that specifies 10 replicas:
 kubectl apply -n simple-nginx -f deployment-scaled.yaml
 ```
 
-This time, when we view the nginx pods, there should be 10:
-
-```console
-kubectl get pods -n simple-nginx -w
-```
+Five _more_ nginx pods should be created by the controller, resulting in 10 
+total pods running.
 
 ## Clean up
 
@@ -66,13 +69,8 @@ First, issue the delete:
 kubectl delete namespace simple-nginx
 ```
 
-Then, watch the pods shut down:
-
-```console
-kubectl get pods -n simple-nginx -w
-```
-
-Finally, observe that the namespace is gone:
+Eventually, all pods should be shut down. Finally, observe that the namespace 
+is gone:
 
 ```console
 kubectl get namespaces
