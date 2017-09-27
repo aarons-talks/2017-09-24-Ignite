@@ -28,8 +28,9 @@ kubectl create -n prom-operator -f example-app.yaml
 
 ## Tell the Operator About the App
 
-Next, install the Custom Resource Definition to tell the operator that your app
-exists:
+Next, install the 
+[`CustomResourceDefinition`](https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/)
+to tell the operator that your app exists:
 
 
 ```console
