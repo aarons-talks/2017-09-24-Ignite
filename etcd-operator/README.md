@@ -29,7 +29,8 @@ kubectl get pods -n etcd-operator
 
 ## Create an Etcd Cluster
 
-Next, tell the operator to install an actual Etcd cluster:
+Next, tell the operator to install an actual Etcd cluster with 3 nodes
+(by default):
 
 ```console
 helm upgrade --set cluster.enabled=true --set rbac.install=true etcd-operator stable/etcd-operator
