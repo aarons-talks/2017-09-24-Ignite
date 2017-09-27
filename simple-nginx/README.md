@@ -14,7 +14,7 @@ We'll install a
 to manage nginx pods. The deployment is the way that we tell Kubernetes 
 controllers to manage these pods.
 
-First, run the installation:
+First, create a namespace and install the deployment:
 
 ```console
 kubectl create ns simple-nginx
@@ -28,6 +28,21 @@ Next, observe the nginx pods launching asynchronously:
 ```console
 kubectl get pods -n simple-nginx -w
 ```
+
+## Delete
+
+Next, delete a pod:
+
+```console
+kubectl delete pod $POD_NAME -n simple-nginx
+```
+
+ ... and observe that the controller reconciles by replacing it:
+
+
+ ```console
+ kubectl get pods -n simple-nginx -w
+ ```
 
 ## Scale
 
