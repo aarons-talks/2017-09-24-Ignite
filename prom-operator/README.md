@@ -3,6 +3,15 @@
 The [Prometheus Operator](https://coreos.com/blog/the-prometheus-operator.html)
 runs a [Prometheus](https://prometheus.io/) monitoring cluster in Kubernetes.
 
+__Important note: please run the following command in a background terminal
+window, so that you can see all of the commands that you run in here get 
+reconciled:__
+
+```console
+kubectl get pods -n prom-operator -w
+```
+
+
 ## Install Operator
 
 First, install it:
@@ -12,11 +21,8 @@ kubectl create ns prom-operator
 kubectl create -n prom-operator -f manifests.yaml
 ```
 
-And verify that it's running:
-
-```console
-kubectl get pods -n prom-operator
-```
+This should install the Prometheus operator software as a pod, but not
+Prometheus itself
 
 ## Install Example Application
 
