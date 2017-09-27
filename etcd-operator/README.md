@@ -55,7 +55,12 @@ Next, add more replicas to the etcd cluster:
 
 ```console
 helm upgrade --set cluster.enabled=true --set cluster.size=5 --set rbac.install=true etcd-operator stable/etcd-operator
-kubectl get po -n etcd-operator
+```
+
+And observe two new etcd nodes (Kubernetes pods) launching:
+
+```console
+kubectl get pods -n etcd-operator
 ```
 
 Next, delete the etcd cluster:
